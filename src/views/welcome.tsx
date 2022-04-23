@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import { RouterView } from 'vue-router';
 import s from './welcome.module.scss';
-import logo from '../assets/icons/assets/mangosteen.svg';
+import logo from '../assets/icons/mangosteen.svg';
 
 export const welcome = defineComponent({
   setup: (props, context) => {
