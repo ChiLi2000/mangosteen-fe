@@ -1,8 +1,8 @@
 import { welcome } from "../views/welcome";
 import { First } from "../components/Welcome/First";
 import { Second } from "../components/Welcome/Second";
-import { Forth } from "../components/Welcome/Third";
-import { Third } from "../components/Welcome/Forth";
+import { Third } from "../components/Welcome/Third";
+import { Forth } from "../components/Welcome/Forth";
 
 export const routes = [
   { path: '/', redirect: '/welcome' },
