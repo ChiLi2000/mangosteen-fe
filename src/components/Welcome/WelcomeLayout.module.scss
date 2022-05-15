@@ -15,6 +15,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    > svg {
+      width: 129px;
+      height: 83px;
+    }
     > h2 {
       margin-top: 40px;
     }
