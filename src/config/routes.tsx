@@ -9,6 +9,9 @@ import { Third } from "../components/Welcome/Third";
 import { ThirdActions } from "../components/Welcome/ThirdActions";
 import { welcome } from "../views/welcome";
 import { startPage } from "../views/startPage";
+import { ItemCreate } from "../components/item/ItemCreate";
+import { ItemList } from "../components/item/ItemList";
+import { itemPage } from "../views/itemPage";
 
 export const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
@@ -23,5 +26,12 @@ export const routes: RouteRecordRaw[] = [
       { path: '4', name: "Welcome4", components: { main: Forth, footer: ForthActions }, },
     ]
   },
-  {path:'/start', component: startPage}
+  {path:'/start', component: startPage},
+  {
+    path: '/items', component: itemPage,
+    children: [
+      { path: '', component: ItemList },
+      { path: 'create', component: ItemCreate },
+    ]
+  }
 ]
