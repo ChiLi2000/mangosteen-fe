@@ -1,4 +1,5 @@
 import { defineComponent, PropType } from 'vue';
+import { RouterView } from 'vue-router';
 import s from './itemPage.module.scss';
 export const itemPage = defineComponent({
   props: {
@@ -8,7 +9,7 @@ export const itemPage = defineComponent({
   },
   setup: (props, context) => {
     return () => (
-      <div class={s.wrapper}>hi</div>
+        <RouterView />
     )
   }
 })
