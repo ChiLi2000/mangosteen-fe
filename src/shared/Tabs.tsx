@@ -14,7 +14,6 @@ export const Tabs = defineComponent({
   setup: (props, context) => {
     return () => {
       const tabs = context.slots.default?.();
-      console.log(tabs);
       if (!tabs) return () => null;
       for (let i = 0; i < tabs.length; i++) {
         if (tabs[i].type !== Tab) {
@@ -36,8 +35,8 @@ export const Tabs = defineComponent({
             ))}
           </ol>
           <div>
-          {tabs.find(item => item.props?.name === props.selected)}
-          </div>
+              {tabs.find((item) => item.props?.name === props.selected)}
+              </div>
         </div>
       );
     };
