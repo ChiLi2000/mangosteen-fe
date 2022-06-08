@@ -41,7 +41,7 @@ export const FormItem = defineComponent({
               onInput={(e: any) =>
                 context.emit("update:modelValue", e.target.value)
               }
-              class={[s.formItem, s.input, s.error]}
+              class={[s.formItem, s.input]}
             />
           );
         case "emojiSelect":
