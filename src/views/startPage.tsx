@@ -5,7 +5,6 @@ import { Button } from '../shared/Button';
 import { Center } from '../shared/Center';
 import { FloatButton } from '../shared/FloatButton';
 import { Icon } from '../shared/Icon';
-import { Navbar } from '../shared/Navbar';
 import { OverlayIcon } from '../shared/Overlay';
 import s from './startPage.module.scss';
 export const startPage = defineComponent({
