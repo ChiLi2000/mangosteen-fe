@@ -7,6 +7,7 @@ import { Time } from "../../shared/time";
 import { ItemSummary } from "./ItemSummary";
 import s from './ItemList.module.scss';
 import { Form, FormItem } from "../../shared/Form";
+import { OverlayIcon } from "../../shared/Overlay";
 export const ItemList = defineComponent({
   setup: (props, context) => {
     const refSelected = ref('本月')
@@ -40,10 +41,10 @@ export const ItemList = defineComponent({
       }
     }
     return () => (
-      <MainLayout>
-        {{
+      <MainLayout>{
+        {
           title: () => "山竹记账",
-          icon: () => <Icon name="menu" />,
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
               <Tabs
@@ -98,8 +99,8 @@ export const ItemList = defineComponent({
               
             </>
           ),
-        }}
-      </MainLayout>
+        }
+        }</MainLayout>
     );
   },
 });
