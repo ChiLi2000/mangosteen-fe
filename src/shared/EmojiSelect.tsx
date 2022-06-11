@@ -1,4 +1,4 @@
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, PropType, ref } from "vue";
 import { emojiList } from "./emojiList";
 import s from "./EmojiSelect.module.scss";
 export const EmojiSelect = defineComponent({
@@ -6,9 +6,12 @@ export const EmojiSelect = defineComponent({
     modelValue: {
       type: String,
     },
+    onUpdateModelValue: {
+      type: Function as PropType<(emoji: string) => void>
+    }
   },
   emits: ["update:modelValue"],
-  setup: (props, { emit }) => {
+  setup: (props, context) => {
     const refSelected = ref(1);
     const table: [string, string[]][] = [
       [
@@ -85,8 +88,8 @@ export const EmojiSelect = defineComponent({
       refSelected.value = index;
     };
     const onClickEmoji = (emoji: string) => {
-      emit("update:modelValue", emoji);
-    };
+      props.onUpdateModelValue(emoji)
+    }
     const emojis = computed(() => {
       const selectedItem = table[refSelected.value][1];
       return selectedItem.map((category) =>
