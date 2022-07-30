@@ -9,6 +9,7 @@ import { hasError, validate } from "../shared/validate";
 import { history } from "../shared/history";
 import s from "./signInPage.module.scss";
 import { useRouter, useRoute } from "vue-router";
+import { refreshMe } from "../shared/me";
 export const signInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -51,6 +52,7 @@ export const signInPage = defineComponent({
         const response = await http.post<{ jwt: string }>("/session", formData);
         localStorage.setItem("jwt", response.data.jwt);
         const returnTo = route.query.return_to?.toString();
+        refreshMe()
         router.push(returnTo || "/");
       }
     };
