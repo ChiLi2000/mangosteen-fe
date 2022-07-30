@@ -26,8 +26,8 @@ export const signInPage = defineComponent({
       on: disabled,
       off: enable,
     } = useBool(false);
-    const router = useRouter()
-    const route = useRoute()
+    const router = useRouter();
+    const route = useRoute();
     const onSubmit = async (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
@@ -50,8 +50,8 @@ export const signInPage = defineComponent({
       if (!hasError(errors)) {
         const response = await http.post<{ jwt: string }>("/session", formData);
         localStorage.setItem("jwt", response.data.jwt);
-        const returnTo = route.query.return_to?.toString()
-        router.push(returnTo || '/')
+        const returnTo = route.query.return_to?.toString();
+        router.push(returnTo || "/");
       }
     };
     const onError = (error: any) => {
