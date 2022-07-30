@@ -6,6 +6,7 @@ import { Form, FormItem } from "../shared/Form";
 import { http } from "../shared/Http";
 import { Icon } from "../shared/Icon";
 import { hasError, validate } from "../shared/validate";
+import { history } from "../shared/history";
 import s from "./signInPage.module.scss";
 export const signInPage = defineComponent({
   setup: (props, context) => {
@@ -44,7 +45,9 @@ export const signInPage = defineComponent({
         ])
       );
       if (!hasError(errors)) {
-        const response = await http.post("/session", formData);
+        const response = await http.post<{ jwt: string }>("/session", formData);
+        localStorage.setItem("jwt", response.data.jwt);
+        history.push("/");
       }
     };
     const onError = (error: any) => {
