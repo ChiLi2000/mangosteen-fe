@@ -39,13 +39,18 @@ export const signInPage = defineComponent({
         ])
       );
     };
+    const onError = (error: any) => {
+      if (error.response.status === 422) {
+        Object.assign(errors, error.response.data.errors)
+      }
+      throw error
+    }
     const onClickSendValidationCode = async () => {
       disabled()
       const response = await axios
         .post("/api/v1/validation_codes", { email: formData.email })
-        .catch(() => {
-          //失败
-        }).finally(enable)
+        .catch(onError)
+        .finally(enable)
       // 成功
       refValidationCode.value.startCount();
     };
