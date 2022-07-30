@@ -3,7 +3,7 @@ import { computed, defineComponent, PropType, ref, VNode } from "vue";
 import { Button } from "./Button";
 import { EmojiSelect } from "./EmojiSelect";
 import s from "./Form.module.scss";
-import { getFriendlyError } from "./getFrendlyError";
+import { getFriendlyError } from "./getFriendlyError";
 import { Time } from "./time";
 export const Form = defineComponent({
   props: {
@@ -91,6 +91,10 @@ export const FormItem = defineComponent({
               <input
                 class={[s.formItem, s.input, s.validationCodeInput]}
                 placeholder={props.placeholder}
+                value={props.modelValue}
+                onInput={(e: any) =>
+                  context.emit("update:modelValue", e.target.value)
+                }
               />
               <Button
                 disabled={isCounting.value || props.disabled}
