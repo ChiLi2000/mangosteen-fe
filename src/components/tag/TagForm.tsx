@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from "vue";
+import { defineComponent, onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Button } from "../../shared/Button";
 import { Form, FormItem } from "../../shared/Form";
@@ -7,10 +7,14 @@ import { onFormError } from "../../shared/onFormError";
 import { hasError, Rules, validate } from "../../shared/validate";
 import s from "./Tag.module.scss";
 export const TagForm = defineComponent({
+  props: {
+    id: Number,
+  },
   setup: (props, context) => {
     const route = useRoute();
     const router = useRouter();
     const formData = reactive({
+      id: undefined,
       name: "",
       sign: "",
       kind: route.query.kind!.toString(),
@@ -34,16 +38,28 @@ export const TagForm = defineComponent({
       });
       Object.assign(errors, validate(formData, rules));
       if (!hasError(errors)) {
-        const response = await http
-          .post("/tags", formData, {
-            params: { _mock: "tagCreate" },
-          })
-          .catch((error) =>
-            onFormError(error, (data) => Object.assign(errors, data.errors))
-          );
+        const promise = (await formData.id)
+          ? http.patch(`/tags/${formData.id}`, formData, {
+              params: { _mock: "tagEdit" },
+            })
+          : http.post("/tags", formData, {
+              params: { _mock: "tagCreate" },
+            });
+        await promise.catch((error) =>
+          onFormError(error, (data) => Object.assign(errors, data.errors))
+        );
         router.back();
       }
     };
+    onMounted(async () => {
+      if (!props.id) {
+        return;
+      }
+      const response = await http.get<Resource<Tag>>(`/tags/${props.id}`, {
+        _mock: "tagShow",
+      });
+      Object.assign(formData, response.data.resource);
+    });
     return () => (
       <Form onSubmit={onSubmit}>
         <FormItem

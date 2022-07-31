@@ -65,7 +65,7 @@ export const routes: RouteRecordRaw[] = [
     component: tagPage,
     children: [
       { path: "create", component: TagCreate },
-      { path: "edit/:id", component: TagEdit },
+      { path: ":id/edit", component: TagEdit },
     ],
   },
   {
