@@ -1,4 +1,4 @@
-import { defineComponent, PropType, reactive, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { useBool } from "../hooks/useBool";
 import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
@@ -6,10 +6,10 @@ import { Form, FormItem } from "../shared/Form";
 import { http } from "../shared/Http";
 import { Icon } from "../shared/Icon";
 import { hasError, validate } from "../shared/validate";
-import { history } from "../shared/history";
 import s from "./signInPage.module.scss";
 import { useRouter, useRoute } from "vue-router";
 import { refreshMe } from "../shared/me";
+import { BackIcon } from "../shared/BackIcon";
 export const signInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -78,7 +78,7 @@ export const signInPage = defineComponent({
       <MainLayout>
         {{
           title: () => "登录",
-          icon: () => <Icon name="left" />,
+          icon: () => <BackIcon />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
