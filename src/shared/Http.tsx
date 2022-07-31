@@ -4,7 +4,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { mockSession } from "../mock/mock";
+import { mockSession, mockTagIndex } from "../mock/mock";
 
 type GetConfig = Omit<AxiosRequestConfig, "params" | "url" | "method">;
 type PostConfig = Omit<AxiosRequestConfig, "url" | "data" | "method">;
@@ -67,6 +67,9 @@ const mock = (response: AxiosResponse) => {
     return false;
   }
   switch (response.config?.params?._mock) {
+    case "tagIndex":
+      [response.status, response.data] = mockTagIndex(response.config);
+      return true;
     case "session":
       [response.status, response.data] = mockSession(response.config);
       return true;

@@ -52,9 +52,6 @@ export const signInPage = defineComponent({
         const response = await http.post<{ jwt: string }>(
           "/session",
           formData,
-          {
-            params: { _mock: "session" },
-          }
         );
         localStorage.setItem("jwt", response.data.jwt);
         const returnTo = route.query.return_to?.toString();
