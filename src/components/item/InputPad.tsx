@@ -144,7 +144,7 @@ export const InputPad = defineComponent({
                 v-model:show={refDatePickerVisible.value}
               >
                 <DatetimePicker
-                  value={props.happenAt}
+                  modelValue={props.happenAt ? new Date(props.happenAt) : new Date()}
                   type="date"
                   title="选择年月日"
                   onConfirm={setDate}
