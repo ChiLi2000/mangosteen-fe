@@ -1,4 +1,3 @@
-import { Button } from "vant";
 import {
   defineComponent,
   onMounted,
@@ -7,6 +6,8 @@ import {
   ref,
   watch,
 } from "vue";
+import { RouterLink } from "vue-router";
+import { Button } from "../../shared/Button";
 import { Datetime } from "../../shared/Datetime";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
@@ -133,7 +134,9 @@ export const ItemSummary = defineComponent({
         ) : (
           <div>记录为空</div>
         )}
-        <FloatButton />
+        <RouterLink to="/items/create">
+          <FloatButton />
+        </RouterLink>
       </div>
     );
   },

@@ -54,8 +54,6 @@ export const Charts = defineComponent({
           _mock: "itemSummary",
         }
       );
-      console.log("response.data");
-      console.log(response.data);
       data1.value = response.data.groups;
     });
     return () => (
