@@ -25,6 +25,7 @@ export const Tags = defineComponent({
         },
         {
           _mock: "tagIndex",
+          _autoLoading: true,
         }
       );
     });

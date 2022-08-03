@@ -49,7 +49,7 @@ export const signInPage = defineComponent({
         ])
       );
       if (!hasError(errors)) {
-        const response = await http.post<{ jwt: string }>("/session", formData);
+        const response = await http.post<{ jwt: string }>("/session", formData,{_autoLoading: true});
         localStorage.setItem("jwt", response.data.jwt);
         const returnTo = route.query.return_to?.toString();
         refreshMe();
