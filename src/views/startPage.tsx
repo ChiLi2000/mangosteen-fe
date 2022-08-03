@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 import { MainLayout } from '../layouts/MainLayout';
 import { Button } from '../shared/Button';
