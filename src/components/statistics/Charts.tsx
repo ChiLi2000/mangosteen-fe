@@ -1,4 +1,11 @@
-import { computed, defineComponent, onMounted, PropType, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  PropType,
+  ref,
+  watch,
+} from "vue";
 import { FormItem } from "../../shared/Form";
 import s from "./Charts.module.scss";
 import { LineChart } from "./LineChart";
@@ -54,13 +61,15 @@ export const Charts = defineComponent({
           happen_before: props.endDate,
           kind: kind.value,
           group_by: "happen_at",
+        },
+        {
           _mock: "itemSummary",
         }
       );
       data1.value = response.data.groups;
     };
-    onMounted(fetchData1)
-    watch(() => kind.value, fetchData1)
+    onMounted(fetchData1);
+    watch(() => kind.value, fetchData1);
 
     // data2
     const data2 = ref<Data2>([]);
@@ -79,13 +88,15 @@ export const Charts = defineComponent({
           happen_before: props.endDate,
           kind: kind.value,
           group_by: "tag_id",
+        },
+        {
           _mock: "itemSummary",
         }
       );
       data2.value = response.data.groups;
-    }
-    onMounted(fetchData2)
-    watch(() => kind.value, fetchData2)
+    };
+    onMounted(fetchData2);
+    watch(() => kind.value, fetchData2);
 
     const betterData3 = computed<
       { tag: Tag; amount: number; percent: number }[]

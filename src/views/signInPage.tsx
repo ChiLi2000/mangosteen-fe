@@ -49,10 +49,7 @@ export const signInPage = defineComponent({
         ])
       );
       if (!hasError(errors)) {
-        const response = await http.post<{ jwt: string }>(
-          "/session",
-          formData,
-        );
+        const response = await http.post<{ jwt: string }>("/session", formData);
         localStorage.setItem("jwt", response.data.jwt);
         const returnTo = route.query.return_to?.toString();
         refreshMe();
@@ -68,7 +65,11 @@ export const signInPage = defineComponent({
     const onClickSendValidationCode = async () => {
       disabled();
       const response = await http
-        .post("/validation_codes", { email: formData.email })
+        .post(
+          "/validation_codes",
+          { email: formData.email },
+          { _autoLoading: true }
+        )
         .catch(onError)
         .finally(enable);
       // 成功
