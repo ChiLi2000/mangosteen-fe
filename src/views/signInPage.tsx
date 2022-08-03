@@ -8,10 +8,11 @@ import { Icon } from "../shared/Icon";
 import { hasError, validate } from "../shared/validate";
 import s from "./signInPage.module.scss";
 import { useRouter, useRoute } from "vue-router";
-import { refreshMe } from "../shared/me";
 import { BackIcon } from "../shared/BackIcon";
+import { useMeStore } from "../stores/useMeStore";
 export const signInPage = defineComponent({
   setup: (props, context) => {
+    const meStore = useMeStore()
     const formData = reactive({
       email: "chili_sauce@qq.com",
       code: "",
@@ -52,7 +53,7 @@ export const signInPage = defineComponent({
         const response = await http.post<{ jwt: string }>("/session", formData,{_autoLoading: true});
         localStorage.setItem("jwt", response.data.jwt);
         const returnTo = route.query.return_to?.toString();
-        refreshMe();
+        meStore.refreshMe();
         router.push(returnTo || "/");
       }
     };
