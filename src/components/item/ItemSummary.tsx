@@ -138,7 +138,7 @@ export const ItemSummary = defineComponent({
             </>
           ) : (
             <>
-              <Center class={s.pig_wrapper}>
+              <Center class={s.pig_wrapper} direction="|">
                 <Icon name="pig" class={s.pig} />
               </Center>
               <div class={s.button_wrapper}>
