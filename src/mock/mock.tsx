@@ -110,15 +110,18 @@ export const mockItemIndex: Mock = (config) => {
     ...attrs,
   });
   const createItem = (n = 1, attrs?: any) =>
-    Array.from({ length: n }).map(() => ({
-      id: createId(),
-      user_id: createId(),
-      amount: Math.floor(Math.random() * 10000),
-      tags_id: [createId()],
-      tags: [createTag()],
-      happen_at: faker.date.past().toISOString(),
-      kind: config.params.kind,
-    }));
+    Array.from({ length: n }).map(
+      () =>
+        ({
+          id: createId(),
+          user_id: createId(),
+          amount: Math.floor(Math.random() * 10000),
+          tag_ids: [createId()],
+          tags: [createTag()],
+          happen_at: faker.date.past().toISOString(),
+          kind: config.params.kind,
+        } as Item)
+    );
   const createBody = (n = 1, attrs?: any) => ({
     resources: createItem(n),
     pager: createPaper(page),
@@ -167,12 +170,12 @@ export const mockItemCreate: Mock = (config) => {
         user_id: 1312,
         amount: 9900,
         note: null,
-        tags_id: [3508],
+        tag_ids: [3508],
         happen_at: "2020-10-29T16:00:00.000Z",
         created_at: "2022-07-03T15:35:56.301Z",
         updated_at: "2022-07-03T15:35:56.301Z",
         kind: "expenses",
-      },
+      } as Item,
     },
   ];
 };
