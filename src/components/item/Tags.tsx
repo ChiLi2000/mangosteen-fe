@@ -37,7 +37,7 @@ export const Tags = defineComponent({
 
     const onLongPress = (tagId: Tag["id"]) => {
       router.push(
-        `/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`
+        `/tags/${tagId}/edit?kind=${props.kind}`
       );
     };
     const onTouchStart = (e: TouchEvent, tag: Tag) => {
