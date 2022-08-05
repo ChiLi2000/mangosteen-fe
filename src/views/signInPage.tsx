@@ -10,7 +10,7 @@ import s from "./signInPage.module.scss";
 import { useRouter, useRoute } from "vue-router";
 import { BackIcon } from "../shared/BackIcon";
 import { useMeStore } from "../stores/useMeStore";
-export const signInPage = defineComponent({
+const signInPage = defineComponent({
   setup: (props, context) => {
     const meStore = useMeStore()
     const formData = reactive({
@@ -117,3 +117,5 @@ export const signInPage = defineComponent({
     );
   },
 });
+
+export default signInPage

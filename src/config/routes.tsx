@@ -7,22 +7,14 @@ import { Second } from "../components/Welcome/Second";
 import { SecondActions } from "../components/Welcome/SecondActions";
 import { Third } from "../components/Welcome/Third";
 import { ThirdActions } from "../components/Welcome/ThirdActions";
-import { welcome } from "../views/welcome";
 import { ItemCreate } from "../components/item/ItemCreate";
 import { ItemList } from "../components/item/ItemList";
-import { itemPage } from "../views/itemPage";
-import { tagPage } from "../views/tagPage";
-import { TagCreate } from "../components/tag/TagCreate";
-import { TagEdit } from "../components/tag/TagEdit";
-import { signInPage } from "../views/signInPage";
-import { statisticsPage } from "../views/statisticsPage";
-import { ComingSoon } from "../shared/ComingSoon";
 
 export const routes: RouteRecordRaw[] = [
   { path: "/", redirect: "/welcome" },
   {
     path: "/welcome",
-    component: welcome,
+    component: ()=> import('../views/welcome'),
     beforeEnter: (to, from, next) => {
       localStorage.getItem('skipFeatures') === 'yes' ? next('/items') : next()
     },
@@ -52,7 +44,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: "/items",
-    component: itemPage,
+    component: ()=> import('../views/itemPage'),
     children: [
       { path: "", component: ItemList },
       { path: "create", component: ItemCreate },
@@ -60,21 +52,21 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: "/tags",
-    component: tagPage,
+    component: ()=> import('../views/tagPage'),
     children: [
-      { path: "create", component: TagCreate },
-      { path: ":id/edit", component: TagEdit },
+      { path: "create", component: ()=> import('../components/tag/TagCreate') },
+      { path: ":id/edit", component: ()=> import('../components/tag/TagEdit') },
     ],
   },
   {
     path: "/sign_in",
-    component: signInPage,
+    component: ()=> import('../views/signInPage'),
   },
   {
-    path: '/statistics', component: statisticsPage
+    path: '/statistics', component: ()=> import('../views/statisticsPage')
   },{
-    path: '/export', component: ComingSoon
+    path: '/export', component: ()=> import('../shared/ComingSoon')
   },{
-    path: '/notify', component: ComingSoon
+    path: '/notify', component: ()=> import('../shared/ComingSoon')
   }
 ];

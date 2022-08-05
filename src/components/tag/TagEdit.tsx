@@ -7,7 +7,7 @@ import { Button } from "../../shared/Button";
 import { http } from "../../shared/Http";
 import s from "./Tag.module.scss";
 import { TagForm } from "./TagForm";
-export const TagEdit = defineComponent({
+const TagEdit = defineComponent({
   setup: (props, context) => {
     const route = useRoute();
     const numberId = parseInt(route.params.id!.toString());
@@ -58,3 +58,5 @@ export const TagEdit = defineComponent({
     );
   },
 });
+
+export default TagEdit

@@ -1,9 +1,11 @@
 import { defineComponent } from 'vue';
 import { RouterView } from 'vue-router';
-export const tagPage = defineComponent({
+const tagPage = defineComponent({
   setup: (props,context) => {
     return () => (
       <RouterView/>
     )
   }
 })
+
+export default tagPage

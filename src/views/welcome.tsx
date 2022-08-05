@@ -11,7 +11,7 @@ const pushMap: Record<string, string> = {
   'Welcome3': '/welcome/4',
   'Welcome4': '/items',
 }
-export const welcome = defineComponent({
+const welcome = defineComponent({
   setup: (props, context) => {
     const main = ref<HTMLElement>()
     const { direction, swiping } = useSwipe(main, { beforeStart: e => e.preventDefault() })
@@ -48,3 +48,5 @@ export const welcome = defineComponent({
     </div>
   }
 })
+
+export default welcome
